@@ -36,6 +36,48 @@ body {
     url("../img/hero.jpg");
   background-size: cover;
   background-position: top;
+  /* position relative for where top and left of logo-box will be positioned from */
+  position: relative;
   /* wedge out bottom part of imgae using clip path, x and y direction move */
-  clip-path: polygon(0 0, 100% 0, 100% 50px, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  /* center title */
+  top: 40%;
+  left: 50%;
+  /* use transform to shift titles to middle of title div to exact center of parent element */
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.heading-primary-main {
+  /* display as block level  elements to create line breaks after and before */
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+  /* display as block level  elements to create line breaks after and before */
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
 }
