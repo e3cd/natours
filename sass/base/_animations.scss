@@ -1,0 +1,67 @@
+/* KEYFRAMES */
+
+/* FOR TITLE */
+@keyframes moveInLeft {
+  /* at start */
+  0% {
+    opacity: 0;
+    /* come form left */
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    /* shift to right of original postion slightly */
+    transform: translateX(1rem);
+  }
+
+  /* finish  */
+
+  100% {
+    opacity: 1;
+    /* origin position */
+    transform: translate(0);
+  }
+}
+
+/* FOR SUBTITLE */
+
+@keyframes moveInRight {
+  /* at start */
+  0% {
+    opacity: 0;
+    /* come form left */
+    transform: translateX(10rem);
+  }
+
+  80% {
+    /* shift to right of original postion slightly */
+    transform: translateX(-1rem);
+  }
+
+  /* finish  */
+
+  100% {
+    opacity: 1;
+    /* origin position */
+    transform: translate(0);
+  }
+}
+
+/* FOR BUTTON */
+
+@keyframes moveInButton {
+  /* at start */
+  0% {
+    opacity: 0;
+    /* come from bottom left */
+    transform: translateY(3rem);
+  }
+
+  /* finish  */
+
+  100% {
+    opacity: 1;
+    /* origin position */
+    transform: translate(0);
+  }
+}

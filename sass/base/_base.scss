@@ -1,0 +1,18 @@
+//base file for low level basics, styles and resets for body and html
+
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* 100% is 16px - we want 1- px */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
