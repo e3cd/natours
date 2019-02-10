@@ -59,11 +59,16 @@ body {
   left: 50%;
   /* use transform to shift titles to middle of title div to exact center of parent element */
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .heading-primary {
   color: #ffffff;
   text-transform: uppercase;
+
+  /* determines if back part of element transform is visible or not */
+  backface-visibility: hidden;
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -72,6 +77,16 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+
+  /* applying animation requires properties */
+  /* animation-name: moveInLeft;
+  animation-duration: 1.5s; */
+  /* timing-function determines how fast or slow the animation function parameters occur over time */
+  /* animation-timing-function: ease-out; */
+  /* animation-iteration-count: 3; */
+  /* animation-delay: 3s; */
+
+  animation: moveInLeft 2s ease-out;
 }
 
 .heading-primary-sub {
@@ -80,4 +95,139 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+
+  /* applying animation  */
+  /* animation-name: moveInRight;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out; */
+  /* animation-delay: 1s */
+  /* short-hand way of incorporating animation */
+  animation: moveInRight 1.5s ease-out;
+}
+
+/* KEYFRAMES */
+
+/* FOR TITLE */
+@keyframes moveInLeft {
+  /* at start */
+  0% {
+    opacity: 0;
+    /* come form left */
+    transform: translateX(-100px);
+  }
+
+  80% {
+    /* shift to right of original postion slightly */
+    transform: translateX(10px);
+  }
+
+  /* finish  */
+
+  100% {
+    opacity: 1;
+    /* origin position */
+    transform: translate(0);
+  }
+}
+
+/* FOR SUBTITLE */
+
+@keyframes moveInRight {
+  /* at start */
+  0% {
+    opacity: 0;
+    /* come form left */
+    transform: translateX(100px);
+  }
+
+  80% {
+    /* shift to right of original postion slightly */
+    transform: translateX(-10px);
+  }
+
+  /* finish  */
+
+  100% {
+    opacity: 1;
+    /* origin position */
+    transform: translate(0);
+  }
+}
+
+/* FOR BUTTON */
+
+@keyframes moveInButton {
+  /* at start */
+  0% {
+    opacity: 0;
+    /* come form left */
+    transform: translateY(30px);
+  }
+
+  /* finish  */
+
+  100% {
+    opacity: 1;
+    /* origin position */
+    transform: translate(0);
+  }
+}
+
+/* ////////////DISCOVER BUTTON STYLING////////////// */
+
+/* pseudoclass to style elements under a special condition */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  /* make slightly opaque */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: white;
+}
+
+.btn:hover::after {
+  /* increase element size */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInButton 0.5s ease-out 0.75s;
+  /* apply styles of 0% before animation starts, make button dissappear */
+  animation-fill-mode: backwards;
 }
