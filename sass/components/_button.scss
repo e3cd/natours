@@ -41,6 +41,15 @@
     }
   }
 
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
   /* create effect of flashing after hover */
 
   &::after {
@@ -84,6 +93,6 @@
 
   &:active {
     box-shadow: 0 1rem 1rem rgba($color-black, 0.15);
-    transform: translateY(0px);
+    transform: translateY(-1px);
   }
 }
