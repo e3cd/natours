@@ -49,3 +49,44 @@ body {
     animation: moveInRight 1.5s ease-out;
   }
 }
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  //set as inline block for gradient to apply on the text only not the whole block
+  display: inline-block;
+  //set gradient form light green to dark green for secondary heading using bacgrkound-image;
+  background-image: linear-gradient(
+    to right,
+    $color-primary-light,
+    $color-primary-dark
+  );
+  //set gradient for text only
+  -webkit-background-clip: text;
+  //set text as transparent for text to assume color of backgorund gradient
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all 0.2s;
+
+  &:hover {
+    //deg for skew
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    //x and y direction for text-shadow, 20pixels for offblur
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+  }
+}
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}

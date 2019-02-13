@@ -1,0 +1,41 @@
+//styles specific to home page
+
+.section-about {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0;
+  //specify negative top margin to produce wedge on top right portion of section, 20vh calculated from 95vh - 75vh from polygon header.scss
+  margin-top: -20vh;
+}
+
+//seciton about features
+
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url("../img/nat-4.jpg");
+  background-size: cover;
+  //move section up
+  margin-top: -10rem;
+
+  //another way of creating wedge is to skew the entire section
+
+  transform: skewY(-7deg);
+
+  //direct child selector used to skew feature boxes in positive 7 deg
+
+  // same as .section-feature *
+
+  & > * {
+    transform: skewY(7deg);
+  }
+}
+
+.section-tours {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0 15rem 0;
+  margin-top: -10rem;
+}

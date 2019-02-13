@@ -13,6 +13,9 @@
   /* position relative for where top and left of logo-box will be positioned from */
   position: relative;
   /* wedge out bottom part of imgae using clip path, x and y direction move */
+  // 0 0 is top left starting point coordinate
+  //use webkit to for it to work on all browsers
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
   &__logo-box {
