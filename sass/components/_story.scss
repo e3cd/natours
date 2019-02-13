@@ -1,0 +1,75 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  background-color: rgba($color-white, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  // no skew of child elements under story,
+  & > * {
+    transform: skewX(12deg);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    //use shape-outside property to produce shape float effect around image, define size of circle and position of center of circle. 1st value is radius,
+    //for this to work only elements that are floated can use this, and defined width and height
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%); //center of the circle
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    //give space to left of image
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__img {
+    height: 100%;
+    //img is larger than normal before hovering, hover scales down the image
+    //translate the iamge to be in center of the box
+    transform: translateX(-4rem) scale(1.4);
+    backface-visibility: hidden;
+    transition: all 0.5s;
+  }
+
+  &__text {
+    //add skew to prevent from skewing with story section
+    transform: skewX(12deg);
+  }
+
+  &__caption {
+    //center figure caption, requires position relative from parent container
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    //essentialy hide the figure caption when not hovered by translating it off visibility
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    //remove slight shakng at end of hover
+    backface-visibility: hidden;
+  }
+
+  //hover to make figure caption appear
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    transition: all 0.5s;
+    //filter to make image on hover appear darker
+    filter: blur(3px) brightness(80%);
+  }
+}
