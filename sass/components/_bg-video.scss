@@ -1,0 +1,24 @@
+//implement background video in css
+
+//set section-stories position to relative for bg-video to have absolute position
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  //remove overflow on margin
+  overflow: hidden;
+
+  //make background video fit page width
+
+  &__content {
+    height: 100%;
+    width: 100%;
+    //maintain aspect raio using object fit, similar to background size cover;
+    object-fit: cover;
+  }
+}
