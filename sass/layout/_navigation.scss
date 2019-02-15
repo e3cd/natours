@@ -1,0 +1,179 @@
+.navigation {
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-white;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+    //set center align for nav icon
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed; //fixes to page as we scroll, and allows us to specifiy it in relation to a positioned element to top left right bottom
+    top: 6.5rem;
+    right: 6.5rem;
+    //use radial gradient to start in middle and go to outside direction
+    background-image: radial-gradient(
+      $color-primary-light,
+      $color-primary-dark
+    );
+    z-index: 1000; //only works when an element has a position defined
+
+    //slight background color transition, no need for transition all
+    //use custom transition with cubic bezier
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    //as soon as navigation is opened navigation button is scaled
+    // transform: scale(90);
+  }
+
+  &__nav {
+    //nav class will take up entire width of the viewport
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    //set left so that navigation comes from left when transitioned
+    left: 0;
+    z-index: 1500;
+
+    //hide navigation links
+    opacity: 0;
+    width: 0;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  &__list {
+    @include absCenter;
+
+    list-style: none;
+    text-align: center;
+    //set width to 100% for transition transform to work
+    width: 100%;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      //dispaly as inline block to apply padding and transform
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 300;
+      padding: 1rem 2rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      //make link background white when hovered
+      background-image: linear-gradient(
+        (120deg, transparent 0%, transparent 50%, $color-white 50%)
+      );
+      //hover backgorund color transition effect by using background size and bacgrkound position on hover/active
+      //background-size of 220% to determine to hide the white background to the right of the li, transparent occupies the rest
+      background-size: 227%;
+      transition: all 0.4s;
+    }
+
+    &:hover,
+    &:active {
+      //use background-position to shift the white background to the left by using 100%
+      background-position: 100%;
+      //make li text dark when hovered
+      color: $color-primary;
+      transform: translateX(1rem);
+    }
+  }
+
+  ///checkbox hack to make navigation visible
+  //hit the checkbox label, checked psuedoclass becomes available and click on it. Use sibling selector to select background class, not adjacent sibling as navigation__button is the adjacent sibling --- so use general sibling selector ~
+
+  //FUNCTIONALITY
+  &__checkbox:checked ~ &__background {
+    //when menu button is clicked green background appears -- use transform: scale
+    transform: scale(80);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    //no longer hide nav- refer to _nav
+    opacity: 1;
+    width: 100%;
+  }
+
+  //ICON STYLING
+
+  //&::before is the top span element, &::after is the bottom span element
+
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px; //always be 2px
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+
+    //for before and after pseudoelements to appear on page, need to define content and display property
+    &::before,
+    &::after {
+      content: "";
+      //position the three spans
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
+    }
+    &::before {
+      top: -0.8rem;
+      //transform-origin: right
+    }
+    &::after {
+      top: 0.8rem;
+    }
+  }
+
+  //icon animation for top and bottom icon when hovered
+  &__button:hover &__icon:before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon:after {
+    top: 1rem;
+  }
+
+  //icon animation for icon to align as cross when clicked
+  //when checked, use adjacent sibling of nav__button +, then slect the buttons child __icon
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon:before {
+    //move back to center
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  &__checkbox:checked + &__button &__icon:after {
+    //move back to center to align as cross
+    top: 0;
+    transform: rotate(-135deg);
+  }
+}
