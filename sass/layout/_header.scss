@@ -29,12 +29,7 @@
   }
 
   &__text-box {
-    position: absolute;
-    /* center title */
-    top: 40%;
-    left: 50%;
-    /* use transform to shift titles to middle of title div to exact center of parent element */
-    transform: translate(-50%, -50%);
+    @include absCenter;
     text-align: center;
   }
 }
