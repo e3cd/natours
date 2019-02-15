@@ -166,14 +166,12 @@
   }
 
   &__checkbox:checked + &__button &__icon:before {
-    //move back to center
-    top: 0;
+    top: 0; //move back to center
     transform: rotate(135deg);
   }
 
   &__checkbox:checked + &__button &__icon:after {
-    //move back to center to align as cross
-    top: 0;
+    top: 0; //move back to center to align as cross
     transform: rotate(-135deg);
   }
 }

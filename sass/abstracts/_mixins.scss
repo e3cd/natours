@@ -15,3 +15,54 @@
   /* use transform to shift titles to middle of title div to exact center of parent element */
   transform: translate(-50%, -50%);
 }
+
+////////MEDIA QUERY MIXINS MANAGER///////
+
+/*
+Desktop first design
+
+0-600px : Phone
+600-900px: Tablet portrait
+900-1200px: Tablet landscape
+
+1200-1800px: Where normal styles apply
+
+1800px+: Big Desktop
+
+$breakpoint argument choices;
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
+
+//USE EM FOR MEDIA QUERIES --- 1EM = 16PX
+
+@mixin respond($breakpoint) {
+  //if directive - pass in breakpoint for certain logic to occur
+  //content directive -allows us to pass a block of code into a mixin
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    //900px
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    //1200px
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    //1800
+    @media (min-width: 112.5) {
+      @content;
+    }
+  }
+}
