@@ -36,6 +36,8 @@ $breakpoint argument choices;
 - big-desktop
 */
 
+//ORDER OF MIXINS -- typography > general layout + grid > page layout > components
+
 //USE EM FOR MEDIA QUERIES --- 1EM = 16PX
 
 @mixin respond($breakpoint) {
@@ -61,7 +63,17 @@ $breakpoint argument choices;
   }
   @if $breakpoint == big-desktop {
     //1800
-    @media (min-width: 112.5) {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == popup {
+    @media (max-width: 100em) {
+      @content;
+    }
+  }
+  @if $breakpoint == small-popup {
+    @media (max-width: 28.125em) {
       @content;
     }
   }

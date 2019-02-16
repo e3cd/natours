@@ -7,6 +7,16 @@
   //last child to have spacing, everything except
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-small;
+    }
+  }
+
+  @include respond(tab-port) {
+    max-width: 50rem;
+    //add padding to row for responsive
+    padding: 0 3rem;
   }
 
   @include clearfix;
@@ -19,6 +29,16 @@
     //see gutter
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
+
+    //all row in responsive should only have one column
+    @include respond(tab-port) {
+      width: 100% !important;
     }
   }
 
