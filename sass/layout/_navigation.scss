@@ -16,6 +16,16 @@
     //set center align for nav icon
     text-align: center;
     cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 4rem;
+      right: 4rem;
+    }
+
+    @include respond(phone) {
+      top: 3rem;
+      right: 3rem;
+    }
   }
 
   &__background {
@@ -38,6 +48,16 @@
 
     //as soon as navigation is opened navigation button is scaled
     // transform: scale(90);
+
+    @include respond(tab-port) {
+      top: 4.5em;
+      right: 4.5rem;
+    }
+
+    @include respond(phone) {
+      top: 3.5em;
+      right: 3.5rem;
+    }
   }
 
   &__nav {
@@ -166,14 +186,12 @@
   }
 
   &__checkbox:checked + &__button &__icon:before {
-    //move back to center
-    top: 0;
+    top: 0; //move back to center
     transform: rotate(135deg);
   }
 
   &__checkbox:checked + &__button &__icon:after {
-    //move back to center to align as cross
-    top: 0;
+    top: 0; //move back to center to align as cross
     transform: rotate(-135deg);
   }
 }
