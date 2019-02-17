@@ -12,9 +12,19 @@
   visibility: hidden;
   transition: all 0.3s;
 
+  //see caniuse.com for css functionality on browser
+
+  //GRACEFUL DEGRATION - use @supports for browser functionality
+  @supports (-webkit-backdrop-filter: blur(10px)) or
+    (backdrop-filter: blur(10px)) {
+    //create blur effect on book now button
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, 0.3);
+  }
+
   //create effect of opening the popup
   //#popup becomes the anchor, pseudoclass &:target becomes available
-
   &__content {
     @include absCenter;
     width: 75%;
@@ -38,6 +48,7 @@
     width: 33.3333%;
     display: table-cell;
 
+    //make images apear on top horizontally
     @include respond(popup) {
       display: table-caption;
       width: 100%;

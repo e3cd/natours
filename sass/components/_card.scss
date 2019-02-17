@@ -21,6 +21,7 @@
     //change width
     width: 100%;
     //set to hidden to hide back part of card, so text can be read front-to-back
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     //must be same as parent element
     height: 50rem;
@@ -206,7 +207,10 @@
 
   ///////////////////remake of the cards on responsive design ////////////////////
 
-  @include respond(tab-port) {
+  // @include respond(tab-port) {
+
+  //at ipad screen, back part of card from book now button is not displayed. Tablet devices do not hover so to enable back part of card to display on ipad, set only screen and hover none;
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
     height: auto;
     border-radius: 3px;
     background-color: $color-white;
