@@ -1,13 +1,13 @@
 .header {
   /* produce effect of green gradient over header backgorund image */
-  height: 95vh;
+  height: 85vh;
   /* use backgorund image for gradient */
   background-image: linear-gradient(
       to right bottom,
       rgba($color-primary-light, 0.8),
       rgba($color-primary-dark, 0.8)
     ),
-    url("../img/hero.jpg");
+    url("../img/hero-small.jpg"); //load small resolution hero image in normal state
   background-size: cover;
   background-position: top;
   /* position relative for where top and left of logo-box will be positioned from */
@@ -16,7 +16,35 @@
   // 0 0 is top left starting point coordinate
   //use webkit to for it to work on all browsers
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 90%);
+
+  //clip path no supported in firefox, use feature query to fix this
+
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 90%);
+    height: 95vh;
+  }
+
+  //media queries to target resolution, safari use -webkit-min-device-pixel-ratio
+
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    (min-width: 125em) {
+    //, implies or
+    // if resolution is higher than 192 dots per inch (apple retina screen) and width is higher than a phone screen, phone screens usually have 2dpr- then load the hero image
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+      ),
+      url("../img/hero.jpg");
+  }
+
+  @include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 95%);
+  }
 
   &__logo-box {
     position: absolute;
